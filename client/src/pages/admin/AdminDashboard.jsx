@@ -109,8 +109,8 @@ export default function AdminDashboard() {
     setLoadingIds((s) => new Set(s).add(id))
     try {
       const { data } = await axios.patch(
-        `${API_URL}/api/inquiries/${id}`,
-        { read: !inquiry.read },
+        `${API_URL}/api/inquiries/${id}/read`,
+        {},
         { headers: authHeaders },
       )
       setInquiries((prev) => prev.map((i) => ((i._id || i.id) === id ? data : i)))
@@ -118,8 +118,7 @@ export default function AdminDashboard() {
         s
           ? {
               ...s,
-              read: inquiry.read ? s.read - 1 : s.read + 1,
-              unread: inquiry.read ? s.unread + 1 : s.unread - 1,
+              unread: inquiry.isRead ? s.unread + 1 : Math.max(0, s.unread - 1),
             }
           : s,
       )
@@ -200,7 +199,7 @@ export default function AdminDashboard() {
           />
           <StatCard
             label="Read"
-            value={stats?.read}
+            value={stats?.total != null && stats?.unread != null ? stats.total - stats.unread : undefined}
             icon={HiOutlineMailOpen}
             color="#10b981"
           />
@@ -252,14 +251,14 @@ export default function AdminDashboard() {
                         <motion.tr
                           key={id}
                           className={`border-b border-white/5 transition-colors ${
-                            !inq.read ? 'bg-purple-500/5' : ''
+                            !inq.isRead ? 'bg-purple-500/5' : ''
                           } hover:bg-white/3`}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0, height: 0 }}
                         >
                           <td className="px-6 py-4 text-white font-medium whitespace-nowrap">
-                            {!inq.read && (
+                            {!inq.isRead && (
                               <span className="w-1.5 h-1.5 bg-purple-400 rounded-full inline-block mr-2 flex-shrink-0" />
                             )}
                             {inq.name}
@@ -274,12 +273,12 @@ export default function AdminDashboard() {
                           <td className="px-6 py-4">
                             <span
                               className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
-                                inq.read
+                                inq.isRead
                                   ? 'bg-green-500/10 text-green-400 border border-green-500/20'
                                   : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
                               }`}
                             >
-                              {inq.read ? 'Read' : 'Unread'}
+                              {inq.isRead ? 'Read' : 'Unread'}
                             </span>
                           </td>
                           <td className="px-6 py-4">
@@ -287,10 +286,10 @@ export default function AdminDashboard() {
                               <button
                                 onClick={() => toggleRead(inq)}
                                 disabled={isLoading}
-                                title={inq.read ? 'Mark as Unread' : 'Mark as Read'}
+                                title={inq.isRead ? 'Mark as Unread' : 'Mark as Read'}
                                 className="p-2 rounded-lg text-gray-500 hover:text-white hover:bg-white/5 transition-colors disabled:opacity-40"
                               >
-                                {inq.read ? <HiOutlineMail size={16} /> : <HiOutlineMailOpen size={16} />}
+                                {inq.isRead ? <HiOutlineMail size={16} /> : <HiOutlineMailOpen size={16} />}
                               </button>
                               <button
                                 onClick={() =>

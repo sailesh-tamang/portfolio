@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/auth');
@@ -14,9 +15,27 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', authRoutes);
-app.use('/api/contact', contactRoutes);
-app.use('/api/inquiries', inquiriesRoutes);
+// Rate limiter for auth endpoint (prevent brute-force)
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20,
+  message: { message: 'Too many login attempts, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Rate limiter for general API routes
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100,
+  message: { message: 'Too many requests, please slow down.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use('/api/auth', authLimiter, authRoutes);
+app.use('/api/contact', apiLimiter, contactRoutes);
+app.use('/api/inquiries', apiLimiter, inquiriesRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 

@@ -20,7 +20,8 @@ router.post(
     const { username, password } = req.body;
 
     try {
-      const admin = await Admin.findOne({ username });
+      // Cast to string to prevent NoSQL injection via object payloads
+      const admin = await Admin.findOne({ username: String(username) });
       if (!admin) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
