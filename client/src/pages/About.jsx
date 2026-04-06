@@ -45,7 +45,7 @@ const EXPERIENCE = [
 
 const EDUCATION = [
   {
-    degree: 'Bachelor\'s in IT & E-Commerce',
+    degree: "Bachelor's in IT & E-Commerce",
     institution: 'Softwarica College of IT and E-Commerce',
     period: '2021 – Present',
     description: 'Focusing on software development, e-commerce systems, and information technology management.',
