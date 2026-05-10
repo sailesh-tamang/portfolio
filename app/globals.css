@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0f172a;
+  --foreground: #ffffff;
+  --primary: #3b82f6;
+  --primary-dark: #1e40af;
+  --accent: #06b6d4;
+  --surface: #1e293b;
+  --border: #1e3a8a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #ffffff;
+    --primary: #3b82f6;
+    --primary-dark: #1e40af;
+    --accent: #06b6d4;
+    --surface: #1e293b;
+    --border: #1e3a8a;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth transitions for better UX */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Professional Grade Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-in.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-in.duration-300 {
+  animation-duration: 0.3s;
+}
+
+.animate-in.duration-700 {
+  animation-duration: 0.7s;
+}
+
+.slide-in-from-top-2 {
+  animation: slideInFromTop 0.4s ease-out;
+}
+
+.slide-in-from-bottom-2 {
+  animation: slideInFromBottom 0.4s ease-out;
+}
+
+.slide-in-from-left-2 {
+  animation: slideInFromLeft 0.4s ease-out;
+}
+
+.slide-in-from-right-2 {
+  animation: slideInFromRight 0.4s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 1000px 100%;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Smooth input focus animations */
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button hover scale animation */
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Link hover animations */
+a {
+  transition: all 0.3s ease;
+}
