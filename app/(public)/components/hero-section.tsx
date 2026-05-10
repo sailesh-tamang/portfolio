@@ -70,7 +70,7 @@ export default function HeroSection() {
                                     View My Work <ArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={20} />
                                 </Link>
                                 <a
-                                    href="/sailesh-tamang-cv.pdf"
+                                    href="/images/Sailesh Kumar_Tamang_Resume.pdf"
                                     download
                                     className="px-8 py-4 border-2 border-blue-400/50 text-blue-300 font-bold rounded-xl hover:bg-blue-500/15 hover:border-blue-400/80 transition-all duration-300 transform hover:scale-105 active:scale-95 animate-in fade-in duration-700"
                                     style={{animationDelay: '900ms'}}
