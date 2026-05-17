@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Sailesh Kumar Tamang - Digital Marketer & Web Developer",
   description: "Portfolio of Sailesh Kumar Tamang, a Digital Marketer and Web Developer with 2+ years of experience in creating engaging digital solutions and growth-driven strategies.",
+  verification: {
+    google: "l-LDIxcZ-fgGpR3LZrAfhhDxraZZYZ99tByUBnovq5c",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager */}
+        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9CYCNH8DBB"
           strategy="afterInteractive"
