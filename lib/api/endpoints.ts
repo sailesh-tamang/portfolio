@@ -1,6 +1,6 @@
 const API = {
     CONTACT: {
-        SEND_EMAIL: "/contact/send-email"
+        SEND_EMAIL: "/api/contact/send-email"
     }
 };
 

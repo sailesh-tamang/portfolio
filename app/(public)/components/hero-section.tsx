@@ -31,7 +31,7 @@ export default function HeroSection() {
                                 <div className="space-y-3">
                                     <h1 className="text-6xl md:text-7xl font-black tracking-tight leading-tight">
                                         <span className="text-white block animate-in fade-in duration-700" style={{animationDelay: '100ms'}}>Sailesh</span>
-                                        <br />
+                                     
                                         <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent block animate-in fade-in duration-700" style={{animationDelay: '200ms'}}>Kumar Tamang</span>
                                     </h1>
                                     <p className="text-xl md:text-2xl font-semibold text-blue-200 animate-in fade-in duration-700" style={{animationDelay: '300ms'}}>

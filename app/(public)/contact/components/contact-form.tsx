@@ -7,6 +7,7 @@ import { contactSchema, contactType } from "../schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { handleContactEmail } from "@/lib/actions/contact-actions";
+import { toast } from "sonner";
 
 export default function ContactForm() {
   // State management for the custom selection
@@ -14,7 +15,6 @@ export default function ContactForm() {
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [err, setError] = useState("");
 
   // Data array moved outside the render loop for cleanliness
   const projectTypes = [
@@ -33,18 +33,22 @@ export default function ContactForm() {
 
 
   const onSubmit = async (data: contactType) => {
-    setError("");
-    setIsLoading(true); // start loading
+    setIsLoading(true);
     try {
       const res = await handleContactEmail(data);
       if (!res.success) {
         throw new Error(res.message || "Something went wrong | Please try again later!");
       }
+      toast.success("✨ Thank you! Your inquiry has been sent successfully.", {
+        description: "We'll get back to you shortly.",
+      });
       router.push("/"); // redirect after success
     } catch (err: any) {
-      setError(err.message || "Something went wrong | Please try again later!");
+      toast.error("❌ Failed to send inquiry", {
+        description: err.message || "Something went wrong. Please try again later!",
+      });
     } finally {
-      setIsLoading(false); // stop loading
+      setIsLoading(false);
     }
   };
 
@@ -175,13 +179,6 @@ export default function ContactForm() {
                   <p className="text-red-400 text-sm animate-in fade-in">{errors.projectDescription?.message}</p>
                 )}
               </div>
-
-              {/* Error Message */}
-              {err && (
-                <div className="p-4 bg-red-500/10 border border-red-400/30 rounded-xl text-red-300 text-sm animate-in fade-in slide-in-from-top-2 duration-300">
-                  {err}
-                </div>
-              )}
 
               {/* Submit Button */}
               <div className="flex justify-center pt-4">
