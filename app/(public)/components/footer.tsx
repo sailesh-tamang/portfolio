@@ -30,7 +30,7 @@ export default function Footer() {
                                 Let's discuss how I can help your business grow through strategic digital marketing and modern web development.
                             </p>
                             <Link
-                                href="mailto:contact@sailesh.dev"
+                                href="/contact"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/40 group/btn transform hover:scale-105 active:scale-95"
                             >
                                 <Mail size={18} />

@@ -87,7 +87,7 @@ export default function HeroSection() {
                                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-3xl blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
                                 <div className="relative rounded-3xl overflow-hidden border-2 border-blue-400/40 bg-slate-900 shadow-2xl shadow-blue-600/20 group-hover:border-blue-400/80 group-hover:shadow-blue-600/40 transition-all duration-500 transform group-hover:scale-105">
                                     <Image
-                                        src="/images/sailesh.jpg"
+                                        src="/images/sailesh.png"
                                         alt="Sailesh Kumar Tamang"
                                         width={500}
                                         height={600}
